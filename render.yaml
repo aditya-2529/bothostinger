@@ -1,0 +1,38 @@
+services:
+  # 1. The React Frontend
+  - type: web
+    name: bothost-frontend
+    env: static
+    buildCommand: cd client && npm install && npm run build
+    staticPublishPath: client/dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://bothost-backend.onrender.com # You will update this later
+
+  # 2. The Node.js Backend
+  - type: web
+    name: bothost-backend
+    env: node
+    buildCommand: cd server && npm install
+    startCommand: cd server && node server.js
+    envVars:
+      - key: MONGO_URI
+        sync: false # You will enter this manually in dashboard
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: PORT
+        value: 3000
+
+  # 3. The Python AI Agent (Optional for Free Tier)
+  # Note: Render Free Tier spins down inactive services. 
+  # If you want this running 24/7 alongside Node, you might need a paid plan or keep it sleeping.
+  - type: web
+    name: bothost-ai-agent
+    env: python
+    buildCommand: cd ai_agent && pip install -r requirements.txt
+    startCommand: cd ai_agent && python server.py
+    envVars:
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: PORT`
+        value: 8000
