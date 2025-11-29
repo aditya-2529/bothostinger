@@ -27,7 +27,7 @@ BotHost is a Platform-as-a-Service (PaaS) that uses a **Google ADK Agent** to ac
 ### 2. Installation
 ```bash
 # Clone the repo
-git clone [https://github.com/YOUR_USERNAME/your-repo.git](https://github.com/YOUR_USERNAME/your-repo.git)
+git clone [https://github.com/aditya-2529/bothostinger.git]
 
 # Install Backend
 cd server
@@ -35,11 +35,11 @@ npm install
 node server.js
 
 # Install AI Agent (In a new terminal)
-cd ../ai_agent
+cd ai_agent
 pip install -r requirements.txt
 python server.py
 
 # Install Frontend (In a new terminal)
-cd ../client
+cd frontend
 npm install
 npm run dev
